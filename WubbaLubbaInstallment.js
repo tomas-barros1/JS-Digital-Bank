@@ -1,4 +1,4 @@
-module.exports = class Installment {
+module.exports = class WubbaLubbaInstallment {
   constructor(value, number) {
     this.value = value
     this.number = number
