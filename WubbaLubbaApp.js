@@ -1,9 +1,9 @@
-const Deposit = require("./Deposit")
-const Loan = require("./Loan")
-const Transfer = require("./Transfer")
-const User = require("./User")
+const Deposit = require("./WubbaLubbaDeposit")
+const Loan = require("./WubbaLubbaLoan")
+const Transfer = require("./WubbaLubbaTransfer")
+const User = require("./WubbaLubbaUser")
 
-module.exports = class App {
+module.exports = class WubbaLubbaApp {
   static #users = []
 
   static findUser(email) {
@@ -14,14 +14,14 @@ module.exports = class App {
   static createUser(email, fullname) {
     const userExists = App.findUser(email)
     if (!userExists) {
-      this.#users.push(new User(email, fullname))
+      this.#users.push(new WubbaLubbaUser(email, fullname))
     }
   }
 
   static deposit(email, value) {
     const user = App.findUser(email)
     if (user) {
-      const newDeposit = new Deposit(value)
+      const newDeposit = new WubbaLubbaDeposit(value)
       user.account.addDeposit(newDeposit)
     }
   }
@@ -30,7 +30,7 @@ module.exports = class App {
     const fromUser = App.findUser(fromUserEmail)
     const toUser = App.findUser(toUserEmail)
     if (fromUser && toUser) {
-      const newTransfer = new Transfer(fromUser, toUser, value)
+      const newTransfer = new WubbaLubbaTransfer(fromUser, toUser, value)
       fromUser.account.addTransfer(newTransfer)
       toUser.account.addTransfer(newTransfer)
     }
@@ -39,7 +39,7 @@ module.exports = class App {
   static takeLoan(email, value, numberOfInstallments) {
     const user = App.findUser(email)
     if (user) {
-      const newLoan = new Loan(value, numberOfInstallments)
+      const newLoan = new WubbaLubbaLoan(value, numberOfInstallments)
       user.account.addLoan(newLoan)
     }
   }
