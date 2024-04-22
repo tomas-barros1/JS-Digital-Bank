@@ -1,4 +1,4 @@
-module.exports = class Account {
+module.exports = class WubbaLubbaAccount {
   #balance
   // #deposits
   // #loans
